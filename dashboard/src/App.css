@@ -1,0 +1,11 @@
+.MuiButton-contained {
+  color: rgb(255 255 255 / 87%) !important;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%) !important;
+  background-color: #1134c6 !important;
+  margin-left: 20% !important;
+}
+.makeStyles-avatar-4 {
+  margin: 30px !important;
+  background-color: #04549e !important;
+}
