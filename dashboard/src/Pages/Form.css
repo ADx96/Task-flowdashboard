@@ -1,0 +1,4 @@
+.MuiGrid-spacing-xs-1 {
+  width: calc(89% + 8px) !important;
+  margin-left: 30% !important;
+}

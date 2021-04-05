@@ -12,8 +12,8 @@ function App() {
       <Router>
         <ResponsiveDrawer />
         <Switch>
-          <Route path="/" exact component={AddEmployee} />
-          <Route path="/Employees" exact component={Employees} />
+          <Route path="/" exact component={Employees} />
+          <Route path="/AddEmployees" exact component={AddEmployee} />
           <Route path="/MangaeTasks" exact component={MangaeTasks} />
         </Switch>
       </Router>

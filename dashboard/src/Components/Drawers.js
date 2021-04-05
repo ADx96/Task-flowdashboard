@@ -17,6 +17,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import "../App.css";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -67,9 +68,23 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <h4> Add Employee</h4>
-        <h4>Manage Tasks</h4>
+        <Link to="/">
+          <h3>Employees List</h3>
+        </Link>
+
+        <Link to="/AddEmployees">
+          <h3>Add Employees</h3>
+        </Link>
+
+        <Link to="/MangaeTasks">
+          <h3>MangaeTasks</h3>
+        </Link>
+
+        <Link to="/Analytics">
+          <h3>Analytics</h3>
+        </Link>
       </List>
+
       <Divider />
       <List></List>
     </div>
