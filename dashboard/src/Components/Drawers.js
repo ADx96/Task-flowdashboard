@@ -18,6 +18,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import "../App.css";
+import logo from "../Media/Logoo.PNG";
+import { Sura } from "../Pages/Styles";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -98,6 +101,7 @@ function ResponsiveDrawer(props) {
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
+          <Sura src={logo} />
           <IconButton
             color="inherit"
             aria-label="open drawer"

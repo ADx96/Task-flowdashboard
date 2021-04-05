@@ -1,9 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import { observe } from "mobx";
 import { observer } from "mobx-react";
+import TextField from "@material-ui/core/TextField";
+import { Alligner } from "./Styles";
+import Switch from "@material-ui/core/Switch";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,34 +19,50 @@ const useStyles = makeStyles((theme) => ({
 
 function AddEmployee() {
   const classes = useStyles();
-
-  function FormRow() {
-    return (
-      <React.Fragment>
-        <Grid item xs={4}>
-          <Paper className={classes.paper}>item</Paper>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.paper}>item</Paper>
-        </Grid>
-      </React.Fragment>
-    );
-  }
+  const [state, setState] = React.useState({
+    checkedA: true,
+    checkedB: true,
+  }); //const for the switch , for full function need to be in another js and exported as function
+  //has been added as a test
 
   return (
-    <div className={classes.root}>
-      <Grid container spacing={1}>
-        <Grid container item xs={12} spacing={3}>
-          <FormRow />
-        </Grid>
-        <Grid container item xs={12} spacing={3}>
-          <FormRow />
-        </Grid>
-        <Grid container item xs={12} spacing={3}>
-          <FormRow />
-        </Grid>
-      </Grid>
-    </div>
+    <Alligner className={classes.root} noValidate autoComplete="off">
+      <TextField id="outlined-basic" label="User Name" variant="outlined" />
+      <br />
+      <TextField id="outlined-basic" label="Password" variant="outlined" />
+      <br />
+      <TextField id="outlined-basic" label="E-Mail" variant="outlined" />
+      <br />
+      <TextField id="outlined-basic" label="First Name" variant="outlined" />
+      <TextField id="outlined-basic" label="Last Name" variant="outlined" />
+      <br />
+      <TextField id="outlined-basic" label="Phone Number" variant="outlined" />
+      <br />
+
+      <TextField id="outlined-basic" label="Gender" variant="outlined" />
+      <br />
+      <TextField id="outlined-basic" label="Job Title" variant="outlined" />
+      <TextField
+        id="outlined-basic"
+        label="Direct Supervisor"
+        variant="outlined"
+      />
+      <TextField id="outlined-basic" label="Deparment" variant="outlined" />
+      <br />
+
+      <FormControlLabel
+        control={
+          <Switch
+            checked={state.checkedB}
+            //onChange={handleChange}
+            name="checkedB"
+            color="primary"
+          />
+        }
+        label="Supervisor"
+      />
+      {/* form control lable is the blue switch */}
+    </Alligner>
   );
 }
 
