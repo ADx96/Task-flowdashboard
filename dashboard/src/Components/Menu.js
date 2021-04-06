@@ -6,9 +6,9 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { FiLogOut } from "react-icons/fi";
 
 const options = [
-  <h5>
+  <h4>
     <FiLogOut /> Logout
-  </h5>,
+  </h4>,
 ];
 
 const ITEM_HEIGHT = 48;
