@@ -21,7 +21,7 @@ import "../Pages/Analytics.css";
 import logo from "../Media/Logoo.png";
 import icon1 from "../Media/kuwait.svg";
 import ShowChartIcon from "@material-ui/icons/ShowChart";
-import { Sura, Sura2 } from "../Pages/Styles";
+import { Sura, Sura2, Sura3 } from "../Pages/Styles";
 import GroupRoundedIcon from "@material-ui/icons/GroupRounded";
 import Avatar from "@material-ui/core/Avatar";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
@@ -74,7 +74,7 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
+      <Sura3 src={logo} /> <div className={classes.toolbar} />
       <Divider />
       <List>
         <ListItem>
@@ -102,7 +102,6 @@ function ResponsiveDrawer(props) {
           </Link>
         </ListItem>
       </List>
-
       <Divider />
       <List></List>
     </div>

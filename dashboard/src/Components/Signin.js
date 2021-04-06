@@ -13,6 +13,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import "../App.css";
+import office from "../Media/33333";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: "url(https://source.unsplash.com/random)",
+    backgroundImage: office,
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
@@ -59,10 +60,25 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
+  const SigninModal = ({ closeModal, isOpen }) => {
+    const [user, setUser] = useState({
+      username: "",
+      password: "",
+    });
+    const handleChange = (event) =>
+    setUser({ ...user, [event.target.name]: event.target.value });
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    authStore.signin(user);
+    closeModal();
+  };
+  
   return (
+    
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
+      
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>

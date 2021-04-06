@@ -117,49 +117,54 @@ function Managetasks() {
       </Paper>
 
       <Alligner className={classes.root} noValidate autoComplete="off">
-        <TextField id="outlined-basic" label="User Name" variant="outlined" />
-        <TextField id="outlined-basic" label="Password" variant="outlined" />
+        <TextField id="outlined-basic" label="Task Number" variant="outlined" />
         <br />
+
+        <TextField id="outlined-basic" label="Task Name " variant="outlined" />
         <br />
-        <TextField id="outlined-basic" label="Password" variant="outlined" />
-        <TextField id="outlined-basic" label="E-Mail" variant="outlined" />
-        <br />
-        <br />
-        <TextField id="outlined-basic" label="First Name" variant="outlined" />
-        <TextField id="outlined-basic" label="Last Name" variant="outlined" />
-        <br />
-        <br />
-        <TextField id="outlined-basic" label="Gender" variant="outlined" />
         <TextField
           id="outlined-basic"
-          label="Phone Number"
+          label="Briefing"
+          multiline
+          rows={4}
           variant="outlined"
         />
+
         <br />
         <br />
-        <TextField id="outlined-basic" label="Job Title" variant="outlined" />
         <TextField
           id="outlined-basic"
-          label="Direct Supervisor"
+          label="Assigned Supervisour"
           variant="outlined"
         />
-        <br />
+        <TextField
+          id="outlined-basic"
+          label="Supervisour Mobile"
+          variant="outlined"
+        />
+
         <Fragment></Fragment>
         <br />
+        <form className={classes.container} noValidate></form>
         <br />
         <div>
           <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+            <InputLabel id="demo-simple-select-label">
+              Input reqiered
+            </InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={age}
               onChange={handleChange}
             >
-              <MenuItem value={10}>Male</MenuItem>
-              <MenuItem value={20}>Female</MenuItem>
+              <MenuItem value={10}>Yes</MenuItem>
+              <MenuItem value={20}>No</MenuItem>
             </Select>
           </FormControl>
+          <br />
+          <br />
+
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel id="demo-simple-select-label">Role</InputLabel>
             <Select
@@ -177,6 +182,7 @@ function Managetasks() {
             <InputLabel id="demo-simple-select-outlined-label">
               Department
             </InputLabel>
+
             <Select
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
@@ -195,22 +201,28 @@ function Managetasks() {
         </div>
 
         <Paper />
-
-        <input
-          accept="image/*"
-          className={classes.input}
-          id="icon-button-file"
-          type="file"
+        <br />
+        <TextField
+          id="date"
+          label="Task Start Date"
+          type="date"
+          defaultValue="2017-05-24"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
-        <label htmlFor="icon-button-file">
-          <IconButton
-            color="primary"
-            aria-label="upload picture"
-            component="span"
-          >
-            <PhotoCamera />
-          </IconButton>
-        </label>
+
+        <TextField
+          id="date"
+          label="Task End Date"
+          type="date"
+          defaultValue="2017-05-24"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
       </Alligner>
     </div>
   );

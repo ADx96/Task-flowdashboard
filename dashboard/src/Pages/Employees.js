@@ -11,7 +11,9 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { observer } from "mobx-react";
 import Button from "@material-ui/core/Button";
-import "../App.css";
+import Avatar from "@material-ui/core/Avatar";
+
+// import "../App.css";
 const useStyles = makeStyles({
   root: {
     width: "100%",
@@ -49,25 +51,32 @@ function Employee() {
   const classes = useStyles();
 
   return (
-    <div className="table-container" style={{ marginRight: "30%" }}>
+    <div className="table-container" style={{ display: "flex" }}>
       <Paper className={classes.root}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell padding="checkbox" />
-              <TableCell>Hotel id</TableCell>
-              <TableCell align="right">Hotel name</TableCell>
-              <TableCell align="right">rating</TableCell>
-              <TableCell align="right">description</TableCell>
-              <TableCell align="right">hotellocation</TableCell>
-              <TableCell align="right">price</TableCell>
-              <TableCell align="right">image</TableCell>
+              <TableCell>Image</TableCell>
+              <TableCell align="right">Emplyee ID</TableCell>
+              <TableCell align="right">Employee name</TableCell>
+              <TableCell align="right">Task Name</TableCell>
+              <TableCell align="right">Task ID</TableCell>
+              <TableCell align="right">Direct Supervisor</TableCell>
+              <TableCell align="right">Mobile</TableCell>
               <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableCell component="th" scope="row"></TableCell>
-            <TableCell align="right"></TableCell>
+            <TableCell className="userInfo" style={{ marginLeft: "504%" }}>
+              <Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                className={classes.large}
+              />
+            </TableCell>
+
+            <TableCell align="right">ay shai</TableCell>
             <TableCell align="right"></TableCell>
             <TableCell align="right"></TableCell>
             <TableCell align="right"></TableCell>

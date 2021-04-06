@@ -9,9 +9,10 @@ import FormControl from "@material-ui/core/FormControl";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import Select from "@material-ui/core/Select";
-import "../Pages/Form.css";
+import Button from "@material-ui/core/Button";
 import Card from "../Components/Card";
 import Paper from "@material-ui/core/Paper";
+import Icon from "@material-ui/core/Icon";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +40,13 @@ function AddEmployee(props) {
   const handleChange3 = (event) => {
     setDepartment(event.target.value);
   };
+  const [selectedDate, setSelectedDate] = React.useState(
+    new Date("2014-08-18T21:11:54")
+  );
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
   return (
     <form>
       <div style={{ marginLeft: "60%", position: "fixed", marginTop: "10%" }}>
@@ -145,6 +152,15 @@ function AddEmployee(props) {
               <PhotoCamera />
             </IconButton>
           </label>
+
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            endIcon={<Icon>send</Icon>}
+          >
+            Send
+          </Button>
         </Alligner>
       </div>
     </form>
