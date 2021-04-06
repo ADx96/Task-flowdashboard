@@ -49,7 +49,7 @@ function Employee() {
   const classes = useStyles();
 
   return (
-    <div className="table-container" style={{ display: "flex" }}>
+    <div className="table-container" style={{ marginRight: "30%" }}>
       <Paper className={classes.root}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
@@ -67,6 +67,7 @@ function Employee() {
           </TableHead>
           <TableBody>
             <TableCell component="th" scope="row"></TableCell>
+            <TableCell align="right"></TableCell>
             <TableCell align="right"></TableCell>
             <TableCell align="right"></TableCell>
             <TableCell align="right"></TableCell>

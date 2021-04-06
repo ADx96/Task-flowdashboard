@@ -1,66 +1,48 @@
-import React from "react";
-import { useTheme } from "@material-ui/core/styles";
+import * as React from "react";
+import Paper from "@material-ui/core/Paper";
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Label,
-  ResponsiveContainer,
-} from "recharts";
-import Title from "./Title";
+  Chart,
+  BarSeries,
+  Title,
+  ArgumentAxis,
+  ValueAxis,
+} from "@devexpress/dx-react-chart-material-ui";
 
-// Generate Sales Data
-function createData(time, amount) {
-  return { time, amount };
-}
-
+import { Animation } from "@devexpress/dx-react-chart";
+import "../App.css";
 const data = [
-  createData("00:00", 0),
-  createData("03:00", 300),
-  createData("06:00", 600),
-  createData("09:00", 800),
-  createData("12:00", 1500),
-  createData("15:00", 2000),
-  createData("18:00", 2400),
-  createData("21:00", 2400),
-  createData("24:00", undefined),
+  { year: "2015", population: 2.525 },
+  { year: "2016", population: 3.018 },
+  { year: "2017", population: 3.682 },
+  { year: "2018", population: 4.44 },
+  { year: "2019", population: 5.31 },
+  { year: "2020", population: 6.127 },
+  { year: "2021", population: 6.93 },
 ];
 
-export default function Chart() {
-  const theme = useTheme();
+export default class Demo extends React.PureComponent {
+  constructor(props) {
+    super(props);
 
-  return (
-    <React.Fragment>
-      <Title>Today</Title>
-      <ResponsiveContainer>
-        <LineChart
-          data={data}
-          margin={{
-            top: 16,
-            right: 16,
-            bottom: 0,
-            left: 24,
-          }}
-        >
-          <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
-          <YAxis stroke={theme.palette.text.secondary}>
-            <Label
-              angle={270}
-              position="left"
-              style={{ textAnchor: "middle", fill: theme.palette.text.primary }}
-            >
-              Sales ($)
-            </Label>
-          </YAxis>
-          <Line
-            type="monotone"
-            dataKey="amount"
-            stroke={theme.palette.primary.main}
-            dot={false}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </React.Fragment>
-  );
+    this.state = {
+      data,
+    };
+  }
+
+  render() {
+    const { data: chartData } = this.state;
+
+    return (
+      <Paper>
+        <Chart data={chartData}>
+          <ArgumentAxis />
+          <ValueAxis max={7} />
+
+          <BarSeries valueField="population" argumentField="year" />
+          <Title text="Employees Effeciency by year" />
+          <Animation />
+        </Chart>
+      </Paper>
+    );
+  }
 }

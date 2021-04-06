@@ -1,10 +1,17 @@
-import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { observer } from "mobx-react";
 import TextField from "@material-ui/core/TextField";
 import { Alligner } from "./Styles";
-import Switch from "@material-ui/core/Switch";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
+import React, { Fragment, useState } from "react";
+import FormControl from "@material-ui/core/FormControl";
+import IconButton from "@material-ui/core/IconButton";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import Select from "@material-ui/core/Select";
+import "../Pages/Form.css";
+import Card from "../Components/Card";
+import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,52 +24,130 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function AddEmployee() {
+function AddEmployee(props) {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-  }); //const for the switch , for full function need to be in another js and exported as function
-  //has been added as a test
+
+  const [age, setAge] = React.useState("");
+  const [Role, setRole] = React.useState("");
+  const [Department, setDepartment] = React.useState("");
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+  const handleChange2 = (event) => {
+    setRole(event.target.value);
+  };
+  const handleChange3 = (event) => {
+    setDepartment(event.target.value);
+  };
 
   return (
-    <Alligner className={classes.root} noValidate autoComplete="off">
-      <TextField id="outlined-basic" label="User Name" variant="outlined" />
-      <br />
-      <TextField id="outlined-basic" label="Password" variant="outlined" />
-      <br />
-      <TextField id="outlined-basic" label="E-Mail" variant="outlined" />
-      <br />
-      <TextField id="outlined-basic" label="First Name" variant="outlined" />
-      <TextField id="outlined-basic" label="Last Name" variant="outlined" />
-      <br />
-      <TextField id="outlined-basic" label="Phone Number" variant="outlined" />
-      <br />
-
-      <TextField id="outlined-basic" label="Gender" variant="outlined" />
-      <br />
-      <TextField id="outlined-basic" label="Job Title" variant="outlined" />
-      <TextField
-        id="outlined-basic"
-        label="Direct Supervisor"
-        variant="outlined"
-      />
-      <TextField id="outlined-basic" label="Deparment" variant="outlined" />
-      <br />
-
-      <FormControlLabel
-        control={
-          <Switch
-            checked={state.checkedB}
-            //onChange={handleChange}
-            name="checkedB"
-            color="primary"
+    <form>
+      <div style={{ marginLeft: "60%", position: "fixed", marginTop: "10%" }}>
+        <Card />
+      </div>
+      <div style={{ marginLeft: "30%", position: "fixed" }}>
+        <Alligner className={classes.root} noValidate autoComplete="off">
+          <TextField id="outlined-basic" label="User Name" variant="outlined" />
+          <TextField id="outlined-basic" label="Password" variant="outlined" />
+          <br />
+          <br />
+          <TextField id="outlined-basic" label="Password" variant="outlined" />
+          <TextField id="outlined-basic" label="E-Mail" variant="outlined" />
+          <br />
+          <br />
+          <TextField
+            id="outlined-basic"
+            label="First Name"
+            variant="outlined"
           />
-        }
-        label="Supervisor"
-      />
-      {/* form control lable is the blue switch */}
-    </Alligner>
+          <TextField id="outlined-basic" label="Last Name" variant="outlined" />
+          <br />
+          <br />
+          <TextField id="outlined-basic" label="Gender" variant="outlined" />
+          <TextField
+            id="outlined-basic"
+            label="Phone Number"
+            variant="outlined"
+          />
+          <br />
+          <br />
+          <TextField id="outlined-basic" label="Job Title" variant="outlined" />
+          <TextField
+            id="outlined-basic"
+            label="Direct Supervisor"
+            variant="outlined"
+          />
+          <br />
+          <Fragment></Fragment>
+          <br />
+          <br />
+          <div>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={age}
+                onChange={handleChange}
+              >
+                <MenuItem value={10}>Male</MenuItem>
+                <MenuItem value={20}>Female</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">Role</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={Role}
+                onChange={handleChange2}
+              >
+                <MenuItem value={10}>Employee</MenuItem>
+                <MenuItem value={20}>Supervisor</MenuItem>
+                <MenuItem value={30}>Admin</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
+                Department
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={Department}
+                onChange={handleChange3}
+                label="Department"
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+
+          <Paper />
+
+          <input
+            accept="image/*"
+            className={classes.input}
+            id="icon-button-file"
+            type="file"
+          />
+          <label htmlFor="icon-button-file">
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+            >
+              <PhotoCamera />
+            </IconButton>
+          </label>
+        </Alligner>
+      </div>
+    </form>
   );
 }
 

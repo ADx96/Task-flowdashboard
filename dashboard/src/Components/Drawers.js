@@ -17,10 +17,16 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import "../App.css";
-import logo from "../Media/Logoo.PNG";
-import { Sura } from "../Pages/Styles";
-
+import "../Pages/Analytics.css";
+import logo from "../Media/Logoo.png";
+import icon1 from "../Media/kuwait.svg";
+import ShowChartIcon from "@material-ui/icons/ShowChart";
+import { Sura, Sura2 } from "../Pages/Styles";
+import GroupRoundedIcon from "@material-ui/icons/GroupRounded";
+import Avatar from "@material-ui/core/Avatar";
+import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import LongMenu from "./Menu";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -71,21 +77,30 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <Link to="/">
-          <h3>Employees List</h3>
-        </Link>
-
-        <Link to="/AddEmployees">
-          <h3>Add Employees</h3>
-        </Link>
-
-        <Link to="/MangaeTasks">
-          <h3>MangaeTasks</h3>
-        </Link>
-
-        <Link to="/Analytics">
-          <h3>Analytics</h3>
-        </Link>
+        <ListItem>
+          <GroupRoundedIcon />
+          <Link to="/">
+            <h3>Employees List</h3>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <PersonAddIcon />
+          <Link to="/AddEmployees">
+            <h3>Add Employees</h3>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <AssignmentIndIcon />
+          <Link to="/MangaeTasks">
+            <h3>MangaeTasks</h3>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <ShowChartIcon />
+          <Link to="/Analytics">
+            <h3>Analytics</h3>
+          </Link>
+        </ListItem>
       </List>
 
       <Divider />
@@ -102,6 +117,7 @@ function ResponsiveDrawer(props) {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Sura src={logo} />
+
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -114,6 +130,20 @@ function ResponsiveDrawer(props) {
           <Typography variant="h6" noWrap>
             Admin Employees Managment
           </Typography>
+          <div className="userInfo" style={{ marginLeft: "60%" }}>
+            <Avatar
+              alt="Remy Sharp"
+              src="/static/images/avatar/1.jpg"
+              className={classes.large}
+            />
+          </div>
+
+          <div className="userInfo" style={{ marginLeft: "12px " }}>
+            <h4>user name</h4>
+          </div>
+          <LongMenu />
+
+          <Sura2 src={icon1} />
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">

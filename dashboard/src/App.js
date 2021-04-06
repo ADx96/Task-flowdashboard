@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AddEmployee from "./Pages/AddEmployee";
 import Employees from "./Pages/Employees";
 import MangaeTasks from "./Pages/ManageTasks";
+import Chart from "./Pages/Analytics";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" exact component={Employees} />
           <Route path="/AddEmployees" exact component={AddEmployee} />
           <Route path="/MangaeTasks" exact component={MangaeTasks} />
+          <Route path="/Analytics" exact component={Chart} />
         </Switch>
       </Router>
     </div>

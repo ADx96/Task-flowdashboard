@@ -2,3 +2,19 @@
   width: calc(89% + 8px) !important;
   margin-left: 30% !important;
 }
+.MuiFormControl-root {
+  border: 0;
+  margin: 0;
+  display: inline-flex;
+  padding: 5px !important;
+  position: relative;
+  min-width: 0;
+  flex-direction: column;
+  vertical-align: top;
+}
+.MuiSelect-outlined.MuiSelect-outlined {
+  padding-right: 100px !important;
+}
+.MuiIconButton-colorPrimary {
+  color: #0728e1 !important;
+}
