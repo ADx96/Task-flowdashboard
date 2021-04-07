@@ -27,6 +27,8 @@ import Avatar from "@material-ui/core/Avatar";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import LongMenu from "./Menu";
+import authStore from "../Stores/authStore";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -138,7 +140,7 @@ function ResponsiveDrawer(props) {
           </div>
 
           <div className="userInfo" style={{ marginLeft: "12px " }}>
-            <h4>user name</h4>
+            {/* <h4>Hello,{authStore.user.username}</h4> */}
           </div>
           <LongMenu />
 

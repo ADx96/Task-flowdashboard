@@ -13,6 +13,7 @@ import Button from "@material-ui/core/Button";
 import Card from "../Components/Card";
 import Paper from "@material-ui/core/Paper";
 import Icon from "@material-ui/core/Icon";
+import employeesMobx from "../Mobx/EmployeeMobx";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +28,18 @@ const useStyles = makeStyles((theme) => ({
 
 function AddEmployee(props) {
   const classes = useStyles();
-
+  const [employee, setEmployee] = useState({
+    username: "",
+    firstName: "",
+    password: "",
+    lastName: "",
+    email: "",
+    gender: "",
+    role: "",
+    jobTitle: "",
+    image: "",
+    department: "",
+  });
   const [age, setAge] = React.useState("");
   const [Role, setRole] = React.useState("");
   const [Department, setDepartment] = React.useState("");
@@ -47,121 +59,160 @@ function AddEmployee(props) {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
+  const handleChange1 = (event) => {
+    setEmployee({ ...employee, [event.target.name]: event.target.value });
+  };
+
+  const handleImage = (event) =>
+    setEmployee({ ...employee, image: event.target.files[0] });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    employeesMobx.createEmployee(employee);
+  };
   return (
-    <form>
-      <div style={{ marginLeft: "60%", position: "fixed", marginTop: "10%" }}>
-        <Card />
-      </div>
-      <div style={{ marginLeft: "30%", position: "fixed" }}>
-        <Alligner className={classes.root} noValidate autoComplete="off">
-          <TextField id="outlined-basic" label="User Name" variant="outlined" />
-          <TextField id="outlined-basic" label="Password" variant="outlined" />
-          <br />
-          <br />
-          <TextField id="outlined-basic" label="Password" variant="outlined" />
-          <TextField id="outlined-basic" label="E-Mail" variant="outlined" />
-          <br />
-          <br />
-          <TextField
-            id="outlined-basic"
-            label="First Name"
-            variant="outlined"
-          />
-          <TextField id="outlined-basic" label="Last Name" variant="outlined" />
-          <br />
-          <br />
-          <TextField id="outlined-basic" label="Gender" variant="outlined" />
-          <TextField
-            id="outlined-basic"
-            label="Phone Number"
-            variant="outlined"
-          />
-          <br />
-          <br />
-          <TextField id="outlined-basic" label="Job Title" variant="outlined" />
-          <TextField
-            id="outlined-basic"
-            label="Direct Supervisor"
-            variant="outlined"
-          />
-          <br />
-          <Fragment></Fragment>
-          <br />
-          <br />
-          <div>
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="demo-simple-select-label">Gender</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={age}
-                onChange={handleChange}
-              >
-                <MenuItem value={10}>Male</MenuItem>
-                <MenuItem value={20}>Female</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="demo-simple-select-label">Role</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={Role}
-                onChange={handleChange2}
-              >
-                <MenuItem value={10}>Employee</MenuItem>
-                <MenuItem value={20}>Supervisor</MenuItem>
-                <MenuItem value={30}>Admin</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="demo-simple-select-outlined-label">
-                Department
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                value={Department}
-                onChange={handleChange3}
-                label="Department"
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
+    <form onSubmit={handleSubmit}>
+      <div style={{ display: "flex%" }}>
+        <div style={{ marginRight: "500px", float: "right" }}>
+          <Card />
+        </div>
+        <div>
+          <Alligner className={classes.root} noValidate autoComplete="off">
+            <TextField
+              id="outlined-basic"
+              label="User Name"
+              variant="outlined"
+              name="firstName"
+            />
+            <TextField
+              id="outlined-basic"
+              label="Password"
+              variant="outlined"
+              name="password"
+            />
+            <br />
+            <br />
+            <TextField
+              id="outlined-basic"
+              label="Password"
+              variant="outlined"
+            />
+            <TextField id="outlined-basic" label="E-Mail" variant="outlined" />
+            <br />
+            <br />
+            <TextField
+              id="outlined-basic"
+              label="First Name"
+              variant="outlined"
+            />
+            <TextField
+              id="outlined-basic"
+              label="Last Name"
+              variant="outlined"
+            />
+            <br />
+            <br />
+            <TextField id="outlined-basic" label="Gender" variant="outlined" />
+            <TextField
+              id="outlined-basic"
+              label="Phone Number"
+              variant="outlined"
+            />
+            <br />
+            <br />
+            <TextField
+              id="outlined-basic"
+              label="Job Title"
+              variant="outlined"
+            />
+            <TextField
+              id="outlined-basic"
+              label="Direct Supervisor"
+              variant="outlined"
+            />
+            <br />
+            <Fragment></Fragment>
+            <br />
+            <br />
+            <div>
+              <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={age}
+                  onChange={handleChange}
+                >
+                  <MenuItem value={10}>Male</MenuItem>
+                  <MenuItem value={20}>Female</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Role</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={Role}
+                  onChange={handleChange2}
+                >
+                  <MenuItem value={10}>Employee</MenuItem>
+                  <MenuItem value={20}>Supervisor</MenuItem>
+                  <MenuItem value={30}>Admin</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel id="demo-simple-select-outlined-label">
+                  Department
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-outlined-label"
+                  id="demo-simple-select-outlined"
+                  value={Department}
+                  onChange={handleChange3}
+                  label="Department"
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
 
-          <Paper />
+            <Paper />
 
-          <input
-            accept="image/*"
-            className={classes.input}
-            id="icon-button-file"
-            type="file"
-          />
-          <label htmlFor="icon-button-file">
-            <IconButton
+            <input
+              accept="image/*"
+              className={classes.input}
+              id="icon-button-file"
+              type="file"
+              onChange={handleImage}
+              name="image"
+            />
+            <label htmlFor="icon-button-file">
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+              >
+                <PhotoCamera />
+              </IconButton>
+            </label>
+
+            <Button
+              variant="contained"
               color="primary"
-              aria-label="upload picture"
-              component="span"
+              className={classes.button}
+              endIcon={<Icon>send</Icon>}
+              type="submit"
             >
-              <PhotoCamera />
-            </IconButton>
-          </label>
-
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            endIcon={<Icon>send</Icon>}
-          >
-            Send
-          </Button>
-        </Alligner>
+              AddEmployee
+            </Button>
+          </Alligner>
+        </div>
       </div>
     </form>
   );

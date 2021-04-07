@@ -4,10 +4,11 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { FiLogOut } from "react-icons/fi";
+import authStore from "../Stores/authStore";
 
 const options = [
   <h4>
-    <FiLogOut /> Logout
+    <FiLogOut onClick={authStore.signout} /> Logout
   </h4>,
 ];
 

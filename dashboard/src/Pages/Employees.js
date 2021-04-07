@@ -11,9 +11,9 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { observer } from "mobx-react";
 import Button from "@material-ui/core/Button";
+import employeesMobx from "../Mobx/EmployeeMobx";
 import Avatar from "@material-ui/core/Avatar";
 
-// import "../App.css";
 const useStyles = makeStyles({
   root: {
     width: "100%",
@@ -58,42 +58,46 @@ function Employee() {
             <TableRow>
               <TableCell padding="checkbox" />
               <TableCell>Image</TableCell>
-              <TableCell align="right">Emplyee ID</TableCell>
-              <TableCell align="right">Employee name</TableCell>
-              <TableCell align="right">Task Name</TableCell>
-              <TableCell align="right">Task ID</TableCell>
-              <TableCell align="right">Direct Supervisor</TableCell>
-              <TableCell align="right">Mobile</TableCell>
+              <TableCell align="right">Employee ID </TableCell>
+              <TableCell align="right">First Name</TableCell>
+              <TableCell align="right">Laast Name</TableCell>
+              <TableCell align="right">Email</TableCell>
+              <TableCell align="right">gender</TableCell>
+              <TableCell align="right">Role</TableCell>
+              <TableCell align="right">jobTitle</TableCell>
               <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableCell className="userInfo" style={{ marginLeft: "504%" }}>
-              <Avatar
-                alt="Remy Sharp"
-                src="/static/images/avatar/1.jpg"
-                className={classes.large}
-              />
-            </TableCell>
-
-            <TableCell align="right">ay shai</TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right">
-              {" "}
-              <Button
-                variant="contained"
-                color="primary"
-                disableElevation
-                // onClick={() => hotelsStore.deleteHotel(hotel.id)}
-              >
-                Delete
-              </Button>
-            </TableCell>
+            {employeesMobx.employees.map((employee) => (
+              <ExpandableTableRow key={employee.id}>
+                <TableCell component="th" scope="row">
+                  <Avatar
+                    alt="Remy Sharp"
+                    src={employee.image}
+                    className={classes.large}
+                  />
+                </TableCell>
+                <TableCell align="right">{employee.id}</TableCell>
+                <TableCell align="right">{employee.firstName}</TableCell>
+                <TableCell align="right">{employee.lastName}</TableCell>
+                <TableCell align="right">{employee.email}</TableCell>
+                <TableCell align="right">{employee.gender}</TableCell>
+                <TableCell align="right">{employee.role}</TableCell>
+                <TableCell align="right">{employee.jobTitle}</TableCell>
+                <TableCell align="right">
+                  {" "}
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    disableElevation
+                    onClick={() => employeesMobx.deleteEmployee(employee.id)}
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              </ExpandableTableRow>
+            ))}
           </TableBody>
         </Table>
       </Paper>

@@ -19,9 +19,10 @@ import "../Pages/Form.css";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
-import "./Manage.css";
 import TextField from "@material-ui/core/TextField";
 import { Alligner } from "./Styles";
+import tasksMobx from "../Mobx/TaskMobx";
+import employeesMobx from "../Mobx/EmployeeMobx";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,18 +69,38 @@ function Managetasks() {
     checkedA: true,
     checkedB: false,
   });
+  const [task, setTask] = useState({
+    username: "",
+    firstName: "",
+    password: "",
+    lastName: "",
+    startdate: "",
+    deadline: "",
+  });
 
   const [age, setAge] = React.useState("");
   const [Role, setRole] = React.useState("");
-  const [Department, setDepartment] = React.useState("");
+  const [Employee, setEmployee] = React.useState("");
+
+  const handleChange1 = (event) => {
+    setTask({ ...task, [event.target.name]: event.target.value });
+  };
+
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+
   const handleChange2 = (event) => {
     setRole(event.target.value);
   };
+
   const handleChange3 = (event) => {
-    setDepartment(event.target.value);
+    setEmployee(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    tasksMobx.createTask(task);
   };
   return (
     <div style={{ display: "flex" }}>
@@ -94,9 +115,10 @@ function Managetasks() {
             <React.Fragment>
               <div>
                 <li>
-                  <h3>Name</h3>
+                  <h3>Employee name</h3>
+                  <h4>task Deatails</h4>
+                  <h4>Supervisor</h4>
                   <h4>Status</h4>
-                  <h4>Department</h4>
                   <React.Fragment>
                     <Typography
                       component="span"
@@ -104,7 +126,7 @@ function Managetasks() {
                       className={classes.inline}
                       color="textPrimary"
                     >
-                      Details
+                      Task Details
                     </Typography>
                     {" — I'll be in your neighborhood doing errands this…"}
                   </React.Fragment>
@@ -115,115 +137,72 @@ function Managetasks() {
           <Divider variant="inset" component="li" />
         </List>
       </Paper>
+      <form onSubmit={handleSubmit}>
+        <Alligner className={classes.root} noValidate autoComplete="off">
+          <TextField
+            id="outlined-basic"
+            label="Task Number"
+            variant="outlined"
+          />
 
-      <Alligner className={classes.root} noValidate autoComplete="off">
-        <TextField id="outlined-basic" label="Task Number" variant="outlined" />
-        <br />
+          <br />
+          <TextField
+            id="outlined-basic"
+            label="Briefing"
+            multiline
+            rows={4}
+            variant="outlined"
+          />
 
-        <TextField id="outlined-basic" label="Task Name " variant="outlined" />
-        <br />
-        <TextField
-          id="outlined-basic"
-          label="Briefing"
-          multiline
-          rows={4}
-          variant="outlined"
-        />
+          <div>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
+                Employee
+              </InputLabel>
 
-        <br />
-        <br />
-        <TextField
-          id="outlined-basic"
-          label="Assigned Supervisour"
-          variant="outlined"
-        />
-        <TextField
-          id="outlined-basic"
-          label="Supervisour Mobile"
-          variant="outlined"
-        />
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={Employee}
+                onChange={handleChange3}
+                label="Department"
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                value={employeesMobx.department}
+              </Select>
+            </FormControl>
+          </div>
 
-        <Fragment></Fragment>
-        <br />
-        <form className={classes.container} noValidate></form>
-        <br />
-        <div>
-          <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">
-              Input reqiered
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={age}
-              onChange={handleChange}
-            >
-              <MenuItem value={10}>Yes</MenuItem>
-              <MenuItem value={20}>No</MenuItem>
-            </Select>
-          </FormControl>
+          <Paper />
+          <br />
+          <TextField
+            id="date"
+            label="Task Start Date"
+            type="date"
+            name="date"
+            defaultValue="2017-05-24"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
           <br />
           <br />
-
-          <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">Role</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={Role}
-              onChange={handleChange2}
-            >
-              <MenuItem value={10}>Employee</MenuItem>
-              <MenuItem value={20}>Supervisor</MenuItem>
-              <MenuItem value={30}>Admin</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">
-              Department
-            </InputLabel>
-
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={Department}
-              onChange={handleChange3}
-              label="Department"
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </FormControl>
-        </div>
-
-        <Paper />
-        <br />
-        <TextField
-          id="date"
-          label="Task Start Date"
-          type="date"
-          defaultValue="2017-05-24"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-
-        <TextField
-          id="date"
-          label="Task End Date"
-          type="date"
-          defaultValue="2017-05-24"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-      </Alligner>
+          <TextField
+            id="date"
+            label="Task Deadline"
+            type="date"
+            name="endDate"
+            defaultValue="2017-05-24"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        </Alligner>
+      </form>
     </div>
   );
 }
