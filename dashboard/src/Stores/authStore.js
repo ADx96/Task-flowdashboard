@@ -27,11 +27,12 @@ class AuthStore {
     this.user = null;
   };
 
-  signin = async (userData) => {
+  signin = async (userData, history) => {
     try {
       const res = await instance.post("/signin", userData);
       instance.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
       this.user = jwtDecode(res.data.token);
+      history.push("/dashboard");
     } catch (error) {
       console.log("AuthStore -> signin -> error", error);
     }

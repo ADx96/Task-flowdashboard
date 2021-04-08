@@ -134,13 +134,13 @@ function ResponsiveDrawer(props) {
           <div className="userInfo" style={{ marginLeft: "60%" }}>
             <Avatar
               alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
+              src={authStore.user.Image} //need to be on payload
               className={classes.large}
             />
           </div>
 
           <div className="userInfo" style={{ marginLeft: "12px " }}>
-            {/* <h4>Hello,{authStore.user.username}</h4> */}
+            {<h4>Hello,{authStore.user.username}</h4>}
           </div>
           <LongMenu />
 

@@ -1,5 +1,6 @@
 import { makeObservable, observable, action } from "mobx";
 import axios from "axios";
+import instance from "../Stores/instance";
 
 class EmployeeMobx {
   employees = [];
@@ -27,7 +28,7 @@ class EmployeeMobx {
   };
   fetchEmployee = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/Employee");
+      const response = await instance.get("/Employee");
       this.employees = response.data;
       console.log(this.employees);
     } catch (error) {
