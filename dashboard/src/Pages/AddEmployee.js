@@ -14,6 +14,7 @@ import Card from "../Components/Card";
 import Paper from "@material-ui/core/Paper";
 import Icon from "@material-ui/core/Icon";
 import employeesMobx from "../Mobx/EmployeeMobx";
+import authStore from "../Stores/authStore";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function AddEmployee(props) {
+function AddEmployee() {
   const classes = useStyles();
   const [employee, setEmployee] = useState({
     username: "",
@@ -39,36 +40,18 @@ function AddEmployee(props) {
     jobTitle: "",
     image: "",
     department: "",
+    manger: "",
   });
-  const [age, setAge] = React.useState("");
-  const [Role, setRole] = React.useState("");
-  const [Department, setDepartment] = React.useState("");
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-  const handleChange2 = (event) => {
-    setRole(event.target.value);
-  };
-  const handleChange3 = (event) => {
-    setDepartment(event.target.value);
-  };
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date("2014-08-18T21:11:54")
-  );
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-  const handleChange1 = (event) => {
+  const handleChange = (event) =>
     setEmployee({ ...employee, [event.target.name]: event.target.value });
-  };
 
   const handleImage = (event) =>
     setEmployee({ ...employee, image: event.target.files[0] });
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    authStore.signup(employee);
     employeesMobx.createEmployee(employee);
   };
   return (
@@ -83,33 +66,36 @@ function AddEmployee(props) {
               id="outlined-basic"
               label="User Name"
               variant="outlined"
-              name="firstName"
+              name="username"
+              onChange={handleChange}
             />
             <TextField
               id="outlined-basic"
               label="Password"
               variant="outlined"
               name="password"
+              onChange={handleChange}
             />
-            <br />
-            <br />
+
             <TextField
               id="outlined-basic"
-              label="Password"
+              label="E-Mail"
               variant="outlined"
+              onChange={handleChange}
             />
-            <TextField id="outlined-basic" label="E-Mail" variant="outlined" />
-            <br />
+
             <br />
             <TextField
               id="outlined-basic"
               label="First Name"
               variant="outlined"
+              onChange={handleChange}
             />
             <TextField
               id="outlined-basic"
               label="Last Name"
               variant="outlined"
+              onChange={handleChange}
             />
             <br />
             <br />
@@ -118,6 +104,7 @@ function AddEmployee(props) {
               id="outlined-basic"
               label="Phone Number"
               variant="outlined"
+              onChange={handleChange}
             />
             <br />
             <br />
@@ -125,11 +112,14 @@ function AddEmployee(props) {
               id="outlined-basic"
               label="Job Title"
               variant="outlined"
+              onChange={handleChange}
             />
             <TextField
               id="outlined-basic"
               label="Direct Supervisor"
               variant="outlined"
+              onChange={handleChange}
+              name="manager"
             />
             <br />
             <Fragment></Fragment>
@@ -141,7 +131,6 @@ function AddEmployee(props) {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={age}
                   onChange={handleChange}
                 >
                   <MenuItem value={10}>Male</MenuItem>
@@ -153,8 +142,7 @@ function AddEmployee(props) {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={Role}
-                  onChange={handleChange2}
+                  onChange={handleChange}
                 >
                   <MenuItem value={10}>Employee</MenuItem>
                   <MenuItem value={20}>Supervisor</MenuItem>
@@ -168,8 +156,7 @@ function AddEmployee(props) {
                 <Select
                   labelId="demo-simple-select-outlined-label"
                   id="demo-simple-select-outlined"
-                  value={Department}
-                  onChange={handleChange3}
+                  onChange={handleChange}
                   label="Department"
                 >
                   <MenuItem value="">

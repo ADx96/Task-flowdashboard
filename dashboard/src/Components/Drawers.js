@@ -81,7 +81,7 @@ function ResponsiveDrawer(props) {
       <List>
         <ListItem>
           <GroupRoundedIcon />
-          <Link to="/">
+          <Link to="/Dashboard">
             <h3>Employees List</h3>
           </Link>
         </ListItem>

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,7 +14,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import "../App.css";
-import office from "../Media/33333";
+import office from "../Media/33333.jpg";
+import authStore from "../Stores/authStore";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -30,7 +32,9 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: office,
+    backgroundImage:
+      "url(https://cdn.discordapp.com/attachments/827208573515333704/828370628654399528/2222.jpg)",
+
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
@@ -58,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
+export default function SignIn() {
   const classes = useStyles();
 
   const [user, setUser] = useState({

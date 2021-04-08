@@ -46,6 +46,7 @@ class AuthStore {
       console.log("AuthStore -> signin -> error", error);
     }
   };
+
   signup = async (userData) => {
     try {
       const res = await instance.post("/signup", userData);
@@ -55,6 +56,7 @@ class AuthStore {
     }
   };
 }
+
 const authStore = new AuthStore();
 authStore.checkForToken();
 
